@@ -1,2 +1,2 @@
 # Security-labs
- Code for various lab in Information security course
+ Code for various labs in the Information Security Course
