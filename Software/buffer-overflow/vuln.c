@@ -7,6 +7,6 @@ int main(int argc, char* argv[])
 		printf("missing argument\n");
  	else
  		strcpy(buf,argv[1]);
- 	printf("buf: 0x%x\n",(unsigned int)buf);
+ 	//printf("buf: 0x%x\n",(unsigned int)buf);
   	return 0;
 }
