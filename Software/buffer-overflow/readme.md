@@ -1,5 +1,5 @@
-**Tips for code injection lab:**<br>
-**Shellcode**
+# Tips for code injection lab:
+### Shellcode
 1. Write shellcode program in assembly language (sh.asm), compile with nasm (sh.o) then link with ld to generate executable file (sh)<br>
 (Viết chương trình shellcode bằng hợp ngữ, biên dịch (nasm) và liên kết (ld) để tạo chương trình thực thi)
 2. Run the following script to get the hex string of shellcode:<br>
@@ -13,15 +13,15 @@ or run this script to generate shellcode binary file:<br>
 (Ước lượng size từ đỉnh stack đến eip khi biên dịch chương trình với option -fno-stack-protector khi gcc)<br>
 4. Compute the distance between buffer (esp) and return address to determine the padding bytes will be injected along with the sheelcode.<br>
 (Tính toán khoảng cách từ buffer đến eip để xác định padding bytes chèn cùng với shellcode)<br>
-**Prepare for the lab environment:**
-5. Turn off OS's address space layout randomization (`sudo setctl -w kernel.randomization_va_space`)<br>
+### Prepare for the lab environment:
+1. Turn off OS's address space layout randomization (`sudo setctl -w kernel.randomization_va_space`)<br>
 (Tắt chế độ tạo cấp phát địa chỉ stack ngẫu nhiên khi load chương trình của HĐH)<br>
-6. Compile program with options to defeat stack protecting mechanism and code execution o stack:<br>
+2. Compile program with options to defeat stack protecting mechanism and code execution o stack:<br>
 (Biên dịch chương trình c với các option tắt cơ chế bảo vệ stack và cho phép thực thi code trên stack)<br>
 `$> gcc vuln.c -o vuln.out -fno-stack-protector -z execstack`<br>
-7. Creat link to zsh instead of default dash to turn off bash countermeasures of Ubuntu 16.04:<br>
+3. Creat link to zsh instead of default dash to turn off bash countermeasures of Ubuntu 16.04:<br>
 `$> sudo ln -sf /bin/zsh /bin/sh`<br>
-**Conducting the attack**
+### Conducting the attack
 1. Load vuln.out in gdb <br>
 (Nạp vuln.out trong gdb)<br>
 `$> gdb vuln.out`<br>
