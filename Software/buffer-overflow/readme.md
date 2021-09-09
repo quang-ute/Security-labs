@@ -15,7 +15,7 @@ or run this script to generate shellcode binary file:<br>
 (Tính toán khoảng cách từ buffer đến eip để xác định padding bytes chèn cùng với shellcode)<br>
 ### Prepare for the lab environment:
 1. Turn off OS's address space layout randomization (`sudo sysctl -w kernel.randomization_va_space=0`)<br>
-(Tắt chế độ tạo cấp phát địa chỉ stack ngẫu nhiên khi load chương trình của HĐH)<br>
+(Tắt chế độ cấp phát địa chỉ stack ngẫu nhiên khi load chương trình của HĐH)<br>
 2. Compile program with options to defeat stack protecting mechanism and code execution o stack:<br>
 (Biên dịch chương trình c với các option tắt cơ chế bảo vệ stack và cho phép thực thi code trên stack)<br>
 `$> gcc vuln.c -o vuln.out -fno-stack-protector -z execstack`<br>
