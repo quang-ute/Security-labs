@@ -9,8 +9,8 @@
 or run this script to generate shellcode binary file:<br>
 (Hoặc chạy bash script dưới đây ở dòng lệnh để sinh binary file mã shellcode nếu inject bằng cách đọc file)<br>
 `$> for i in $(objdump -d sh |grep "^ " |cut -f2); do echo -ne '\x'$i >> sh.bin; done;` <br>
-3. Estimate buffer size of vulnerable program with input strings of various length (eg. `./vuln.out $(python -c "print('a'*nnn)"`)<br>
-(Ước lượng size từ đỉnh stack đến eip khi biên dịch chương trình với option -fno-stack-protector khi gcc)<br>
+3. Estimate buffer size *nnn* of vulnerable program with input strings of various length (eg. `./vuln.out $(python -c "print('a'*nnn)"`)<br>
+(Ước lượng size *nnn* từ đỉnh stack đến eip khi biên dịch chương trình với option -fno-stack-protector khi gcc)<br>
 4. Compute the distance between buffer (esp) and return address to determine the padding bytes will be injected along with the sheelcode.<br>
 (Tính toán khoảng cách từ buffer đến eip để xác định padding bytes chèn cùng với shellcode)<br>
 ### Prepare for the lab environment:
