@@ -36,7 +36,7 @@ or run this script to generate shellcode binary file:<br>
 5. Identify the return address while watching out the stack, then replace `\xff\xff\xff\xff` with value of esp<br>
 (Xác định vị trí của địa chỉ trả về trong stack, thay thế `\xff\xff\xff\xff` với địa chỉ của esp)<br>
 `set *<address of return address> = <address of esp>`<br>
-6. Continue execute program, you should now in the new bash shell:<br>
+6. Continue executing program, you should now in the new bash shell:<br>
 (Thực thi tiếp chương trình, sẽ thấy xuất hiện dấu nhắc shell --> thực thi được shellcode)<br>
 `(gdb-peda) continue`<br>
 `$_` <-- you are in the new bash. If vuln.out is set with root as the owner, you will be root in the new shell!  <br>
