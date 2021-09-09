@@ -33,8 +33,8 @@ or run this script to generate shellcode binary file:<br>
 4. Watch the stack memory from esp (stack top):<br>
 (Quan sát bộ nhớ stack từ esp)<br>
 `(gdb-peda) x/80xb $esp`
-5. Identify the return address while watching out the stack, then replace `\xff\xff\xff\xff` with value of esp<br>
-(Xác định vị trí của địa chỉ trả về trong stack, thay thế `\xff\xff\xff\xff` với địa chỉ của esp)<br>
+5. Identify the return address while watching out the stack, then replace `\xff\xff\xff\xff` with the value of esp<br>
+(Xác định vị trí của địa chỉ trả về trong stack, thay thế `\xff\xff\xff\xff` với giá trị của esp)<br>
 `set *<address of return address> = <address of esp>`<br>
 6. Continue executing program, you should now in the new bash shell:<br>
 (Thực thi tiếp chương trình, sẽ thấy xuất hiện dấu nhắc shell --> thực thi được shellcode)<br>
