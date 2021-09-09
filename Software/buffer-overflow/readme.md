@@ -1,4 +1,5 @@
 **Tips for code injection lab:**<br>
+**Shellcode**
 1. Write shellcode program in assembly language (sh.asm), compile with nasm (sh.o) then link with ld to generate executable file (sh)<br>
 (Viết chương trình shellcode bằng hợp ngữ, biên dịch (nasm) và liên kết (ld) để tạo chương trình thực thi)
 2. Run the following script to get the hex string of shellcode:<br>
