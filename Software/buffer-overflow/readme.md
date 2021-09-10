@@ -16,7 +16,7 @@ or run this script to generate shellcode binary file:<br>
 ### Prepare for the lab environment:
 1. Turn off OS's address space layout randomization (`sudo sysctl -w kernel.randomization_va_space=0`)<br>
 (Tắt chế độ cấp phát địa chỉ stack ngẫu nhiên khi load chương trình của HĐH)<br>
-2. Compile program with options to defeat stack protecting mechanism and code execution o stack:<br>
+2. Compile program with options to defeat stack protecting mechanism and code execution on stack:<br>
 (Biên dịch chương trình c với các option tắt cơ chế bảo vệ stack và cho phép thực thi code trên stack)<br>
 `$> gcc vuln.c -o vuln.out -fno-stack-protector -z execstack`<br>
 3. Creat link to zsh instead of default dash to turn off bash countermeasures of Ubuntu 16.04:<br>
