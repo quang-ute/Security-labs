@@ -6,5 +6,5 @@
 4. Click on the `Create / Reset database` button and it will generate any additional configuration needed<br>
 You can now login with credentials: `username: admin, password: password`<br>
 5. Click DWVA on the left menu, then set the security level to `low`<br>
-6. Fireup the simple http server. Now you are ready for the lab.
+6. Launch the simple http server. Now you are ready for the lab.
 7. For lab detail please watch the video of the instructor.
