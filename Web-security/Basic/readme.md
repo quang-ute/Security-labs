@@ -5,4 +5,4 @@ Add these lines in the `/etc/hosts` file <br>
 `10.9.0.5    www.bank32.com` <br>
 `10.9.0.5    www.bank99.com` <br>
 Now you can access websites via names <br>
-Special gratitude to Dr.Du at the Syracuse University for this code.
+Special gratitude to Dr.Du at the Syracuse University for providing this code.
