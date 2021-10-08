@@ -10,7 +10,7 @@ services:
           - ./image_apache_server/bank99:/var/www/bank99
         tty: true
         ports:
-          - "80:80"
+          - "3128:80"
         networks:
             net-10.9.0.0:
                 ipv4_address: 10.9.0.5
