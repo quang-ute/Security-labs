@@ -1,0 +1,32 @@
+version: "3"
+  
+services:
+    server:
+        build: 
+            context: ./containers
+        image: image-server
+        container_name: server-10.9.0.5
+        volumes:
+           - ./containers:/mapdir
+        tty: true
+        networks:
+            net-10.9.0.0:
+                ipv4_address: 10.9.0.5
+
+    attacker:
+        build: 
+            context: ./containers
+        image: image-attacker
+        container_name: attacker-10.9.0.6
+        tty: true
+        networks:
+            net-10.9.0.0:
+                ipv4_address: 10.9.0.6
+
+networks:
+    net-10.9.0.0:
+        name: net-10.9.0.0
+        ipam:
+            config:
+                - subnet: 10.9.0.0/24
+
