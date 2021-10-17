@@ -1,0 +1,32 @@
+version: "3"
+  
+services:
+    Alice:
+        build: 
+            context: ./containers
+        image: alice-image
+        container_name: alice-10.9.0.5
+        volumes:
+           - ./mapdir:/mapdir
+        tty: true
+        networks:
+            net-10.9.0.0:
+                ipv4_address: 10.9.0.5
+
+    Bob:
+        build: 
+            context: ./containers
+        image: bob-image
+        container_name: bob-10.9.0.6
+        tty: true
+        networks:
+            net-10.9.0.0:
+                ipv4_address: 10.9.0.6
+
+networks:
+    net-10.9.0.0:
+        name: net-10.9.0.0
+        ipam:
+            config:
+                - subnet: 10.9.0.0/24
+
