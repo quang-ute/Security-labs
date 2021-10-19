@@ -7,7 +7,7 @@ services:
         image: alice-image
         container_name: alice-10.9.0.5
         volumes:
-           - ./mapdir:/mapdir
+           - ./mapdir:/python-source
         tty: true
         networks:
             net-10.9.0.0:
