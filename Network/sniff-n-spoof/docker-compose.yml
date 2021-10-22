@@ -7,7 +7,7 @@ services:
         image: alice-image
         container_name: alice-10.9.0.5
         volumes:
-           - ./mapdir:/python-source
+           - ./python-source:/mapdir
         tty: true
         networks:
             net-10.9.0.0:
@@ -18,6 +18,8 @@ services:
             context: ./containers
         image: bob-image
         container_name: bob-10.9.0.6
+        volumes:
+           - ./python-source:/mapdir
         tty: true
         networks:
             net-10.9.0.0:
