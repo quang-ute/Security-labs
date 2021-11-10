@@ -20,6 +20,10 @@ RUN apt-get update  \
 	scapy \
      && rm -rf /var/lib/apt/lists/*
 
+RUN useradd -m -s /bin/bash exam && \
+	echo "root:exam" | chpasswd && \
+	echo "exam:exam" | chpasswd && \
+	usermod -aG sudo exam
 
 
 CMD /bin/bash
