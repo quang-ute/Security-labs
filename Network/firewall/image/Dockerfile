@@ -4,20 +4,20 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update  \
     && apt-get -y install  \
         binutils \
-	    netcat \
+#	    netcat \
         curl   \
         iproute2  \
         iputils-ping \
         mtr-tiny \
         nano   \
         net-tools \
-        unzip \
+#        unzip \
         iptables \
         openbsd-inetd \
         telnet \ 
         telnetd \
         tcpdump \
-	scapy \
+#	scapy \
      && rm -rf /var/lib/apt/lists/*
 
 RUN useradd -m -s /bin/bash exam && \
