@@ -9,6 +9,7 @@ services:
         volumes:
            - ./containers:/mapdir
         tty: true
+        privileged: true
         networks:
             net-10.9.0.0:
                 ipv4_address: 10.9.0.5
