@@ -1,0 +1,34 @@
+version: "3"
+
+services:
+    simple-server-a:
+        build: ./alpine-apache
+        image: nimmis/alpine-apache
+        container_name: serverA-10.9.0.5
+        volumes:
+          - ./alpine-apache/siteA:/web/html
+ 
+        tty: true
+        networks:
+            net-10.9.0.0:
+                ipv4_address: 10.9.0.5
+
+    simple-server-b:
+        build: ./alpine-apache
+        image: nimmis/alpine-apache
+        container_name: serverB-10.9.0.6
+        volumes:
+          - ./alpine-apache/siteB:/web/html
+ 
+        tty: true
+        networks:
+            net-10.9.0.0:
+                ipv4_address: 10.9.0.6
+
+networks:
+    net-10.9.0.0:
+        name: net-10.9.0.0
+        ipam:
+            config:
+                - subnet: 10.9.0.0/24
+
