@@ -1,0 +1,2 @@
+document.write("Javascript: A");
+
