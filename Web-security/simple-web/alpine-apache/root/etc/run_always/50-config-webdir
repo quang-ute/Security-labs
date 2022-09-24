@@ -1,6 +1,5 @@
 #!/bin/sh
-
-# popolate /web if empty
+# populate /web if empty
 
 if [ ! -d /web/config ]; then
   mkdir /web/config

@@ -1,5 +1,4 @@
 #!/bin/sh
-
 # copy index.html if html directory does not exists
 
 if [ ! -d /web/html ]; then
