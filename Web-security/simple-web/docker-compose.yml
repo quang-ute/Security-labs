@@ -6,9 +6,10 @@ services:
         image: nimmis/alpine-apache
         container_name: serverA-10.9.0.5
         volumes:
-          - ./alpine-apache/siteA:/web/html
- 
+          - ./alpine-apache/siteA:/web/html 
         tty: true
+        ports:
+          - "8025:80"
         networks:
             net-10.9.0.0:
                 ipv4_address: 10.9.0.5
@@ -19,8 +20,9 @@ services:
         container_name: serverB-10.9.0.6
         volumes:
           - ./alpine-apache/siteB:/web/html
- 
         tty: true
+        ports:
+          - "8026:80"
         networks:
             net-10.9.0.0:
                 ipv4_address: 10.9.0.6
