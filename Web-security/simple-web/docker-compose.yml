@@ -26,6 +26,18 @@ services:
         networks:
             net-10.9.0.0:
                 ipv4_address: 10.9.0.6
+    simple-parent-site:
+        build: ./alpine-apache
+        image: nimmis/alpine-apache
+        container_name: server-10.9.0.10
+        volumes:
+          - ./alpine-apache/parentsite:/web/html
+        tty: true
+        ports:
+          - "8010:80"
+        networks:
+            net-10.9.0.0:
+                ipv4_address: 10.9.0.10
 
 networks:
     net-10.9.0.0:
