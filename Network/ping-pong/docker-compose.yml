@@ -4,7 +4,7 @@ services:
     Alice:
         build: 
             context: ./containers
-        image: alice-image
+        image: base-image
         container_name: alice-10.9.0.5
         volumes:
            - ./python-source:/mapdir
@@ -16,7 +16,7 @@ services:
     Bob:
         build: 
             context: ./containers
-        image: bob-image
+        image: base-image
         container_name: bob-10.9.0.6
         volumes:
            - ./python-source:/mapdir
