@@ -6,6 +6,7 @@ def process_packet(pkt):
 		print("IP: {} --> {}".format(ip.src, ip.dst))
 	if pkt.haslayer(TCP):
 		tcp = pkt[TCP]
+		print(" Flag:{}".format(tcp.flags),end="")
 		print("	TCP port: {} --> {}".format(tcp.sport, tcp.dport))
 	elif pkt.haslayer(UDP):
 		udp = pkt[UDP]
@@ -16,4 +17,4 @@ def process_packet(pkt):
 	else:
 		print("	Other protocol")
 
-sniff(iface='eth0', filter='ip', prn=process_packet)
+sniff(iface='br-bf52093ff2f2', filter='ip', prn=process_packet)
