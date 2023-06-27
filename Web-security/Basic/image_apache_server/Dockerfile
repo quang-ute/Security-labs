@@ -1,9 +1,0 @@
-FROM handsonsecurity/seed-server:apache-php
-
-COPY my_server.conf server_name.conf /etc/apache2/sites-available/
-
-RUN chmod 755 /var/www/bank32
-RUN chmod 755 /var/www/bank99
-
-RUN  a2ensite server_name.conf   \
-     && a2ensite my_server.conf 
