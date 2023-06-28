@@ -1,0 +1,39 @@
+version: "3"
+
+services:
+    apache-server:
+        build: ./apache_php
+        image: ubuntu-apache-php
+        container_name: web-10.9.0.5
+        volumes:
+          - ./apache_php/siteA:/var/www/siteA
+          - ./apache_php/siteB:/var/www/siteB
+          - ./apache_php/parentsite:/var/www/parentsite          
+        tty: true
+        ports:
+          - "3128:80"
+        networks:
+            net-10.9.0.0:
+                ipv4_address: 10.9.0.5
+    ui-client:
+      build: 
+        context: ./client
+      image: web-client-image
+      container_name: web-client
+      tty: true
+      cap_add:
+        - NET_ADMIN
+      privileged: true
+      ports:
+        - 5900:5900
+        - 2222:22
+      networks:
+        net-10.9.0.0:
+            ipv4_address: 10.9.0.6
+networks:
+    net-10.9.0.0:
+        name: net-10.9.0.0
+        ipam:
+            config:
+                - subnet: 10.9.0.0/24
+
