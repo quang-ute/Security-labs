@@ -1,0 +1,38 @@
+version: "3"
+
+services:
+    apache-server:
+        build: ./apache_php
+        image: ubuntu-apache-php
+        container_name: web-server
+        volumes:
+          - ./apache_php/mysite:/var/www/mysite
+          - ./apache_php/darksite:/var/www/darksite                 
+        tty: true
+        ports:
+          - "3128:80"
+        networks:
+            net-10.9.0.0:
+                ipv4_address: 10.9.0.5
+    ui-client:
+      build: 
+        context: ./client
+      image: web-client-image
+      container_name: client
+      tty: true
+      cap_add:
+        - NET_ADMIN
+      privileged: true
+      ports:
+        - "5900:5900"
+        - "2222:22"
+      networks:
+        net-10.9.0.0:
+            ipv4_address: 10.9.0.6
+networks:
+    net-10.9.0.0:
+        name: net-10.9.0.0
+        ipam:
+            config:
+                - subnet: 10.9.0.0/24
+
