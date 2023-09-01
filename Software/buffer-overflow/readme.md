@@ -1,4 +1,4 @@
-# Tips for code injection lab:
+k-boundary=2# Tips for code injection lab:
 ### Shellcode
 1. Write shellcode program in assembly language (sh.asm), compile with nasm (sh.o) then link with ld to generate executable file (sh)<br>
 (Viết chương trình shellcode bằng hợp ngữ, biên dịch (nasm) và liên kết (ld) để tạo chương trình thực thi)
@@ -18,7 +18,7 @@ or run this script to generate shellcode binary file:<br>
 (Tắt chế độ cấp phát địa chỉ stack ngẫu nhiên khi load chương trình của HĐH)<br>
 2. Compile program with options to defeat stack protecting mechanism and code execution on stack:<br>
 (Biên dịch chương trình c với các option tắt cơ chế bảo vệ stack và cho phép thực thi code trên stack)<br>
-`$> gcc vuln.c -o vuln.out -fno-stack-protector -z execstack`<br>
+`$> gcc vuln.c -o vuln.out -fno-stack-protector -z execstack -mpreferred-stack-boundary=2`<br>
 3. Creat link to zsh instead of default dash to turn off bash countermeasures of Ubuntu 16.04:<br>
 `$> sudo ln -sf /bin/zsh /bin/sh`<br>
 ### Conducting the attack
