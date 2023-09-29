@@ -67,7 +67,7 @@ ADD config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml  \
 
 # RUN chown -R alpine:alpine /home/alpine/.config /home/alpine/.xscreensaver
 RUN chown -R alpine:alpine /home/alpine/
-#RUN echo /tmp/hosts >> /etc/hosts
+
 # exposed ports
 EXPOSE 22 5900
 
