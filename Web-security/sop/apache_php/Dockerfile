@@ -4,13 +4,8 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update  \
     && apt-get -y install  \
         apache2 \
-#        binutils \
         curl   \
-#        iproute2  \
-#        iputils-ping \
         nano   \
-#        net-tools \
-#        unzip \
         # PHP
         libapache2-mod-php7.4 \
         php7.4-cli \
