@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Search{% endblock %}
+{% block content %}
+<div class="card">
+    <h2>🔍 Search Notes</h2>
+    <form method="GET">
+        <label>Search query</label>
+        <input type="text" name="q" placeholder="Search..." value="{{ query }}">
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+    {# VULN: Reflected XSS — query is rendered unsanitised #}
+    {% if query %}
+    <div style="margin-top:1rem; padding:1rem; background:#f0f0f0; border-radius:5px">
+        <p>You searched for: <strong>{{ query | safe }}</strong></p>
+    </div>
+    {% endif %}
+</div>
+
+<div class="card">
+    <h4>🔬 Try Reflected XSS</h4>
+    <p>Enter: <code>&lt;script&gt;alert('XSS')&lt;/script&gt;</code> in the search box.</p>
+</div>
+{% endblock %}

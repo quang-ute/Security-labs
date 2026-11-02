@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}New Note{% endblock %}
+{% block content %}
+<div class="card" style="max-width:600px">
+    <h2>✏️ New Note</h2>
+    <form method="POST">
+        <label>Title</label>
+        <input type="text" name="title" required>
+        <label>Content</label>
+        <textarea name="content" rows="8" required></textarea>
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a href="{{ url_for('dashboard') }}" style="margin-left:.5rem">Cancel</a>
+    </form>
+</div>
+{% endblock %}

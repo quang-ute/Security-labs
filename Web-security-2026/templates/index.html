@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}WSS — Home{% endblock %}
+{% block content %}
+<div class="card">
+    <h2>🔬 Web Security School</h2>
+    <p>A deliberately vulnerable web application for learning about security flaws.</p>
+    <p style="margin-top:.8rem"><strong>⚠️ Warning:</strong> Do not deploy this outside a local lab environment.</p>
+</div>
+
+<div class="card">
+    <h2>📋 Vulnerability Labs</h2>
+    <ol style="margin-left:1.5rem; line-height:2">
+        <li><a href="{{ url_for('profile') }}">CSRF</a> — Cross-Site Request Forgery</li>
+        <li><a href="{{ url_for('ssrf') }}">SSRF</a> — Server-Side Request Forgery</li>
+        <li><a href="{{ url_for('search') }}">XSS (Reflected)</a> — Cross-Site Scripting</li>
+        <li><a href="{{ url_for('login') }}">SQLi</a> — SQL Injection</li>
+        <li><a href="{{ url_for('serve_file', filename='') }}">Path Traversal</a> — Directory traversal</li>
+        <li><a href="{{ url_for('upload') }}">File Upload</a> — Unrestricted file upload</li>
+        <li><a href="{{ url_for('note_detail', note_id=1) }}">IDOR</a> — Insecure Direct Object Reference</li>
+        <li><a href="{{ url_for('ping') }}">Command Injection</a> — OS command injection</li>
+        <li><a href="{{ url_for('greet') }}">SSTI</a> — Server-Side Template Injection</li>
+        <li><a href="{{ url_for('proxy', to='/') }}">Open Redirect</a> — Unvalidated redirects</li>
+    </ol>
+    <p style="margin-top:1rem"><a href="{{ url_for('register') }}" class="btn btn-primary">Get Started → Register</a></p>
+</div>
+
+<div class="card">
+    <h2>📚 Lab Guides</h2>
+    <p>Each lab guide explains the vulnerability, lets you exploit it hands-on, and then shows you how to fix it.</p>
+    <p>Open <code>web_sec/labs/</code> to read the guides.</p>
+</div>
+{% endblock %}

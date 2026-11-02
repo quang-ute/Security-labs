@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}WSS — Web Security School{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Roboto, sans-serif; background: #f5f7fa; color: #222; }
+        nav { background: #1a1a2e; color: #eee; padding: 1rem 2rem; display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap; }
+        nav a { color: #a0c4ff; text-decoration: none; font-weight: 500; }
+        nav a:hover { color: #fff; }
+        nav .brand { font-weight: 700; font-size: 1.2rem; color: #fff; margin-right: auto; }
+        nav .user-info { font-size: 0.9rem; color: #aaa; margin-left: auto; }
+        .container { max-width: 960px; margin: 2rem auto; padding: 0 1rem; }
+        .card { background: #fff; border-radius: 8px; padding: 1.5rem; box-shadow: 0 1px 4px rgba(0,0,0,.1); margin-bottom: 1.5rem; }
+        .card h2 { margin-bottom: 1rem; }
+        .btn { display: inline-block; padding: .5rem 1.2rem; border-radius: 6px; text-decoration: none; font-weight: 600; border: none; cursor: pointer; }
+        .btn-primary { background: #4361ee; color: #fff; }
+        .btn-primary:hover { background: #3a56d4; }
+        .btn-danger { background: #e63946; color: #fff; }
+        .btn-danger:hover { background: #c1121f; }
+        .btn-sm { padding: .3rem .8rem; font-size: .85rem; }
+        input, textarea, select { width: 100%; padding: .6rem; border: 1px solid #ccc; border-radius: 5px; font-size: 1rem; margin-bottom: .8rem; }
+        label { font-weight: 600; display: block; margin-bottom: .3rem; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { text-align: left; padding: .6rem; border-bottom: 1px solid #ddd; }
+        th { background: #f0f0f0; }
+        .alert { padding: .8rem; border-radius: 5px; margin-bottom: 1rem; }
+        .alert-error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .alert-info { background: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+        .alert-success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        pre { background: #1e1e2e; color: #cdd6f4; padding: 1rem; border-radius: 5px; overflow-x: auto; font-size: .85rem; }
+        footer { text-align: center; padding: 2rem; color: #888; font-size: .85rem; }
+        nav form { display: inline; }
+        nav form button { background: none; border: none; color: #a0c4ff; font-weight: 500; cursor: pointer; font-size: 1rem; }
+        nav form button:hover { color: #fff; }
+        .flash { position: fixed; top: 1rem; right: 1rem; background: #333; color: #fff; padding: .8rem 1.5rem; border-radius: 6px; z-index: 999; }
+    </style>
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <nav>
+        <span class="brand">🔬 WSS</span>
+        <a href="{{ url_for('index') }}">Home</a>
+        {% if user %}
+            <a href="{{ url_for('dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('profile') }}">Profile</a>
+            <a href="{{ url_for('search') }}">Search</a>
+            <a href="{{ url_for('ssrf') }}">SSRF</a>
+            <a href="{{ url_for('ping') }}">Ping</a>
+            <a href="{{ url_for('upload') }}">Upload</a>
+            <span class="user-info">{{ user.username }}</span>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        {% else %}
+            <a href="{{ url_for('login') }}">Login</a>
+            <a href="{{ url_for('register') }}">Register</a>
+        {% endif %}
+    </nav>
+
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+
+    <footer>
+        WSS — Web Security School &bull; For educational use only
+    </footer>
+</body>
+</html>

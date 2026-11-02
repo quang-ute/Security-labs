@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<div class="card">
+    <h2>📊 Dashboard</h2>
+    <p>Welcome, <strong>{{ user.username }}</strong>!</p>
+</div>
+
+<div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem">
+        <h2>📝 Your Notes</h2>
+        <a href="{{ url_for('new_note') }}" class="btn btn-primary btn-sm">+ New Note</a>
+    </div>
+    {% if notes %}
+    <table>
+        <tr><th>ID</th><th>Title</th><th>Actions</th></tr>
+        {% for n in notes %}
+        <tr>
+            <td>{{ n.id }}</td>
+            <td><a href="{{ url_for('note_detail', note_id=n.id) }}">{{ n.title }}</a></td>
+            <td><a href="{{ url_for('edit_note', note_id=n.id) }}" class="btn btn-sm btn-primary">Edit</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p>No notes yet. <a href="{{ url_for('new_note') }}">Create one!</a></p>
+    {% endif %}
+</div>
+
+<div class="card">
+    <h2>🔧 Tools</h2>
+    <ul>
+        <li><a href="{{ url_for('search') }}">🔍 Search Notes</a></li>
+        <li><a href="{{ url_for('ping') }}">🌐 Ping Tool</a></li>
+        <li><a href="{{ url_for('ssrf') }}">🌍 Fetch URL</a></li>
+        <li><a href="{{ url_for('upload') }}">📎 Upload File</a></li>
+        <li><a href="{{ url_for('greet') }}">👋 Greeting</a></li>
+    </ul>
+</div>
+{% endblock %}

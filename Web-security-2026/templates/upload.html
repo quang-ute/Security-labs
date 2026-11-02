@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}File Upload{% endblock %}
+{% block content %}
+<div class="card" style="max-width:500px">
+    <h2>📎 Upload File</h2>
+    {% if message %}<div class="alert alert-success">{{ message }}</div>{% endif %}
+    <form method="POST" enctype="multipart/form-data">
+        <label>Choose file</label>
+        <input type="file" name="file" required>
+        <button type="submit" class="btn btn-primary">Upload</button>
+    </form>
+    <div class="alert alert-info" style="margin-top:1rem">
+        <strong>💡 Lab Hint:</strong> No file type restrictions! Try uploading a <code>.html</code> or <code>.py</code> file, then access it via <code>/files/&lt;filename&gt;</code>.
+    </div>
+</div>
+{% endblock %}

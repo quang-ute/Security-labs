@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Welcome{% endblock %}
+{% block extra_head %}
+<script>
+// VULN: DOM-based XSS — reads location.hash and writes innerHTML
+function showGreeting() {
+    var hash = location.hash || '#Guest';
+    var name = hash.substring(1);  // remove '#'
+    document.getElementById('greeting').innerHTML = 'Hello, <strong>' + name + '</strong>!';
+}
+window.addEventListener('DOMContentLoaded', showGreeting);
+window.addEventListener('hashchange', showGreeting);
+</script>
+{% endblock %}
+{% block content %}
+<div class="card" style="max-width:500px; margin:auto; text-align:center">
+    <h2>👋 Welcome Page</h2>
+    <div id="greeting">
+        <p>Hello, <strong>Guest</strong>!</p>
+    </div>
+    <p style="margin-top:1rem; color:#888">
+        Your name comes from the URL fragment (hash).
+    </p>
+    <div class="alert alert-info" style="margin-top:1rem; text-align:left">
+        <strong>💡 Lab Hint:</strong><br>
+        Try visiting:<br>
+        <code>{{ url_for('welcome', _external=True) }}#&lt;img src=x onerror=alert(1)&gt;</code>
+    </div>
+</div>
+{% endblock %}

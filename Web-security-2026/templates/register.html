@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Register{% endblock %}
+{% block content %}
+<div class="card" style="max-width:400px; margin:auto">
+    <h2>📝 Register</h2>
+    {% if error %}<div class="alert alert-error">{{ error }}</div>{% endif %}
+    <form method="POST">
+        <label>Username</label>
+        <input type="text" name="username" required>
+        <label>Password</label>
+        <input type="password" name="password" required>
+        <label>Email</label>
+        <input type="text" name="email" placeholder="you@example.com">
+        <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+    <p style="margin-top:1rem">Already registered? <a href="{{ url_for('login') }}">Login</a></p>
+</div>
+{% endblock %}

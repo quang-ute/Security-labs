@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Ping Lab{% endblock %}
+{% block content %}
+<div class="card">
+    <h2>🌐 Network Ping Tool</h2>
+    <p>Ping a host to check if it's reachable.</p>
+    <form method="POST">
+        <label>Target hostname or IP</label>
+        <input type="text" name="target" placeholder="8.8.8.8" value="8.8.8.8">
+        <button type="submit" class="btn btn-primary">Ping</button>
+    </form>
+</div>
+
+{% if output %}
+<div class="card">
+    <h3>📊 Output</h3>
+    <pre>{{ output }}</pre>
+</div>
+{% endif %}
+
+<div class="card">
+    <h4>🔬 Try Command Injection</h4>
+    <p>Instead of an IP, try: <code>8.8.8.8; cat /etc/passwd</code> or <code>$(whoami)</code></p>
+</div>
+{% endblock %}

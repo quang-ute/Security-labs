@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}SSRF Lab{% endblock %}
+{% block content %}
+<div class="card">
+    <h2>🌍 Fetch External URL</h2>
+    <p>Enter a URL to fetch its content. The server will retrieve it for you.</p>
+    <form method="POST">
+        <label>Target URL</label>
+        <input type="text" name="url" placeholder="http://example.com" value="http://example.com">
+        <button type="submit" class="btn btn-primary">Fetch</button>
+    </form>
+</div>
+
+{% if result %}
+<div class="card">
+    <h3>📄 Response</h3>
+    <pre>{{ result }}</pre>
+</div>
+{% endif %}
+
+<div class="card">
+    <h4>🔬 Try SSRF</h4>
+    <p>Fetch <code>http://127.0.0.1:15000/</code> to hit the local server, or try <code>file:///etc/passwd</code>.</p>
+</div>
+{% endblock %}

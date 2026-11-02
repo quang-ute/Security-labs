@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+<div class="card" style="max-width:500px; margin:auto">
+    <h2>👤 Profile</h2>
+    <p><strong>Username:</strong> {{ user.username }}</p>
+    <form method="POST">
+        <label>Email</label>
+        <input type="text" name="email" value="{{ user.email }}">
+        <label>Bio</label>
+        <textarea name="bio" rows="3">{{ user.bio }}</textarea>
+        <button type="submit" class="btn btn-primary">Update Profile</button>
+    </form>
+    <div class="alert alert-info" style="margin-top:1rem">
+        💡 <strong>Lab Hint:</strong> This form has no CSRF protection. An attacker can trick you into changing your email.
+    </div>
+</div>
+{% endblock %}

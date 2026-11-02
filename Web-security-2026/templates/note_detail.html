@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Note #{{ note.id }}{% endblock %}
+{% block content %}
+<div class="card">
+    <h2>{{ note.title }}</h2>
+    <p><strong>By:</strong> User #{{ note.user_id }}</p>
+    <hr style="margin:1rem 0">
+    {# VULN: Persistent XSS — note content rendered raw #}
+    <div>
+        {{ note.content | safe }}
+    </div>
+    <hr style="margin:1rem 0">
+    <a href="{{ url_for('dashboard') }}" class="btn btn-sm btn-primary">← Back</a>
+</div>
+{% endblock %}
